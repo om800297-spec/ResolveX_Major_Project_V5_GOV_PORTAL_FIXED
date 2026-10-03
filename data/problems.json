@@ -1,0 +1,134 @@
+[
+  {
+    "id": "RX-32743785",
+    "title": "broken road",
+    "description": "the road has been broken since three days",
+    "location": "college main gate",
+    "category": "General",
+    "severity": "LOW",
+    "priorityScore": 25,
+    "confidence": 78,
+    "department": "General Support",
+    "assignedDepartment": "General Support",
+    "assignmentMode": "AI Suggested",
+    "aiSolution": "Review the report and assign it to the appropriate team.",
+    "rootCause": "Root cause requires inspection and human verification.",
+    "aiMatched": "general",
+    "status": "Reported",
+    "image": null,
+    "latitude": 0,
+    "longitude": 0,
+    "reporterId": "u1",
+    "reporterName": "Demo Citizen",
+    "createdAt": "2026-10-03T13:05:43.785Z",
+    "updatedAt": "2026-10-03T13:05:43.785Z",
+    "duplicateOf": null,
+    "duplicateSimilarity": 0,
+    "feedback": null,
+    "timeline": [
+      {
+        "status": "Reported",
+        "at": "2026-10-03T13:05:43.785Z",
+        "by": "Demo Citizen"
+      },
+      {
+        "status": "AI Analysed",
+        "at": "2026-10-03T13:05:43.785Z",
+        "by": "ResolveX AI"
+      }
+    ]
+  },
+  {
+    "id": "RX-32867712",
+    "title": "Road damage near college",
+    "description": "College ke main gate ke paas road mein bade gaddhe hain aur vehicles ko dikkat ho rahi hai.",
+    "location": "college main gate",
+    "category": "General",
+    "severity": "LOW",
+    "priorityScore": 25,
+    "confidence": 78,
+    "department": "General Support",
+    "assignedDepartment": "General Support",
+    "assignmentMode": "AI Suggested",
+    "aiSolution": "Review the report and assign it to the appropriate team.",
+    "rootCause": "Root cause requires inspection and human verification.",
+    "aiMatched": "general",
+    "status": "Reported",
+    "image": null,
+    "latitude": 0,
+    "longitude": 0,
+    "reporterId": "u1",
+    "reporterName": "Demo Citizen",
+    "createdAt": "2026-10-03T13:07:47.712Z",
+    "updatedAt": "2026-10-03T13:07:47.712Z",
+    "duplicateOf": null,
+    "duplicateSimilarity": 0,
+    "feedback": null,
+    "timeline": [
+      {
+        "status": "Reported",
+        "at": "2026-10-03T13:07:47.712Z",
+        "by": "Demo Citizen"
+      },
+      {
+        "status": "AI Analysed",
+        "at": "2026-10-03T13:07:47.712Z",
+        "by": "ResolveX AI"
+      }
+    ]
+  },
+  {
+    "id": "RX-32918575",
+    "title": "water leakage",
+    "description": "water leaKage from main pipeline",
+    "location": "college main gate",
+    "category": "Water & Sanitation",
+    "severity": "MEDIUM",
+    "priorityScore": 62,
+    "confidence": 94,
+    "department": "Water Department",
+    "assignedDepartment": "Water Department",
+    "assignmentMode": "AI Suggested",
+    "aiSolution": "Inspect the water/drainage network and schedule maintenance.",
+    "rootCause": "Blockage, leakage, network damage or inadequate drainage.",
+    "aiMatched": "water",
+    "status": "Resolved",
+    "image": null,
+    "latitude": 0,
+    "longitude": 0,
+    "reporterId": "u1",
+    "reporterName": "Demo Citizen",
+    "createdAt": "2026-10-03T13:08:38.575Z",
+    "updatedAt": "2026-10-03T13:17:42.896Z",
+    "duplicateOf": null,
+    "duplicateSimilarity": 0,
+    "feedback": {
+      "resolved": true,
+      "rating": 5,
+      "comment": "",
+      "at": "2026-10-03T13:17:42.896Z"
+    },
+    "timeline": [
+      {
+        "status": "Reported",
+        "at": "2026-10-03T13:08:38.575Z",
+        "by": "Demo Citizen"
+      },
+      {
+        "status": "AI Analysed",
+        "at": "2026-10-03T13:08:38.575Z",
+        "by": "ResolveX AI"
+      },
+      {
+        "status": "In Progress",
+        "at": "2026-10-03T13:12:26.481Z",
+        "by": "System Admin"
+      },
+      {
+        "status": "Resolved",
+        "at": "2026-10-03T13:17:05.161Z",
+        "by": "System Admin"
+      }
+    ]
+  }
+]

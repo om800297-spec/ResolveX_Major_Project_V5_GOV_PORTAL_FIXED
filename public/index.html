@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ResolveX | AI Civic Intelligence</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head><body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="logo big">RX</div><div class="eyebrow">MAJOR PROJECT • AI CIVIC INTELLIGENCE</div>
+    <h1>ResolveX</h1><p>Detect • Analyze • Route • Resolve</p>
+    <form id="loginForm">
+      <label>Email<input id="loginEmail" type="email" value="citizen@resolvex.demo" required></label>
+      <label>Password<input id="loginPassword" type="password" value="citizen123" required></label>
+      <button class="btn full">Login</button>
+    </form>
+      <div class="google-login-card">
+        <div class="google-divider"><span>OR</span></div>
+        <a class="google-btn" href="/auth/google" id="googleLoginBtn">
+          <span class="google-icon">G</span>
+          Continue with Google
+        </a>
+        <small class="muted">Citizen account only • Google OAuth must be configured in .env</small>
+      </div>
+
+    <div class="demo-accounts">
+      <button onclick="fillLogin('citizen@resolvex.demo','citizen123')">Citizen</button>
+      <button onclick="fillLogin('officer@resolvex.demo','officer123')">Officer</button>
+      <button onclick="fillLogin('admin@resolvex.demo','admin123')">Admin</button>
+    </div>
+    <small class="muted">Demo authentication for academic prototype.</small>
+    <div id="loginError" class="error"></div>
+  </div>
+</div>
+
+<header>
+  <div class="brand"><div class="logo">RX</div><div><b>ResolveX</b><small>AI Civic Intelligence Platform</small></div></div>
+  <nav><a href="#dashboard">Dashboard</a><a href="#report">Report</a><a href="#problems">Problems</a><a href="#map">Map</a><a href="#admin" id="adminNav">Admin</a></nav>
+  <div class="userbox"><span id="userBadge"></span><button class="ghost" onclick="logout()">Logout</button></div>
+</header>
+
+<main>
+<section class="hero">
+ <div><div class="eyebrow">MAJOR PROJECT • MULTIMODAL + WORKFLOW AUTOMATION</div>
+ <h1>Detect. Analyze.<br><span>Resolve.</span></h1>
+ <p>AI-assisted real-world problem detection, priority scoring, duplicate detection, department assignment, SLA tracking, resolution feedback and operational analytics.</p>
+ <div><a class="btn" href="#report">Report Problem</a><button class="ghost" onclick="demoVoice()">🎙️ Voice Input</button></div></div>
+ <div class="hero-card"><div class="orb">AI</div><h3>ResolveX Intelligence</h3><div class="chips"><span>Classification</span><span>Priority</span><span>Duplicates</span><span>Routing</span><span>SLA</span><span>Analytics</span></div></div>
+</section>
+
+<section id="dashboard">
+ <div class="section-head"><div><div class="eyebrow">COMMAND CENTER</div><h2>Live dashboard</h2></div><div><span id="lastUpdated" class="muted"></span> <button class="ghost" onclick="refresh()">Refresh</button></div></div>
+ <div class="stats">
+  <div class="stat"><small>Total Reports</small><b id="total">0</b></div><div class="stat"><small>Pending</small><b id="pending">0</b></div>
+  <div class="stat"><small>Resolved</small><b id="resolved">0</b></div><div class="stat"><small>High / Critical</small><b id="high">0</b></div>
+  <div class="stat"><small>SLA Overdue</small><b id="overdue">0</b></div><div class="stat"><small>Avg Rating</small><b id="avgRating">—</b></div>
+ </div>
+ <div class="grid3">
+  <div class="card"><h3>Categories</h3><div id="categories"></div></div>
+  <div class="card"><h3>Severity</h3><div id="severity"></div></div>
+  <div class="card"><h3>Department workload</h3><div id="departments"></div></div>
+ </div>
+ <div class="card insight"><h3>🤖 AI Operations Insights</h3><div id="insights"></div></div>
+</section>
+
+<section id="report" class="panel">
+ <div class="eyebrow">MULTIMODAL REPORTING</div><h2>Report a problem</h2>
+ <form id="form">
+  <div class="grid2"><label>Title<input name="title" required placeholder="Broken street light"></label><label>Location<input name="location" placeholder="College main gate"></label></div>
+  <label>Description<textarea id="desc" name="description" required placeholder="Describe the issue in English, Hindi or Hinglish..."></textarea></label>
+  <div class="grid3 smallgrid"><label>Photo<input id="image" type="file" name="image" accept="image/*"></label><label>Latitude<input name="latitude" type="number" step="any" placeholder="23.2599"></label><label>Longitude<input name="longitude" type="number" step="any" placeholder="77.4126"></label></div>
+  <div id="preview" class="preview"></div>
+  <button class="btn">🤖 Analyse & Submit</button><div id="result" class="result hidden"></div>
+ </form>
+</section>
+
+<section id="problems" class="panel">
+ <div class="section-head"><div><div class="eyebrow">OPERATIONS</div><h2>Problem management</h2></div></div>
+ <div class="filters">
+   <input id="search" placeholder="🔎 Search ID, title, location, description...">
+   <select id="fCategory"><option>All</option></select><select id="fSeverity"><option>All</option><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select>
+   <select id="fStatus"><option>All</option><option>Reported</option><option>Assigned</option><option>In Progress</option><option>Resolved</option><option>Reopened</option></select>
+   <select id="fDepartment"><option>All</option></select><button class="ghost" onclick="loadProblems()">Apply</button>
+ </div>
+ <div id="list" class="list"></div>
+</section>
+
+<section id="map" class="panel"><div class="eyebrow">LOCATION INTELLIGENCE</div><h2>Problem map</h2><p class="muted">Uses submitted coordinates when available; otherwise a demo location is used for visualization.</p><div id="mapbox"></div></section>
+
+<section id="admin" class="panel">
+ <div class="section-head"><div><div class="eyebrow">ADMIN / OFFICER TOOLS</div><h2>Workflow control</h2></div></div>
+ <div class="grid3">
+   <div class="card"><h3>Notifications</h3><div id="notifications"></div></div>
+   <div class="card"><h3>Role</h3><p id="roleInfo" class="muted"></p><p>Admin can assign departments and export reports. Officers can update complaints assigned to their department.</p></div>
+   <div class="card"><h3>Export</h3><button class="btn" onclick="exportCsv()">⬇ Export CSV</button><p class="muted">Admin role only.</p></div>
+ </div>
+</section>
+</main>
+<footer>ResolveX v4 • Major Project Prototype • AI recommendations require human verification.</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/app.js"></script>
+
+      <div id="officialPortalBox" class="official-portal-box hidden">
+        <div class="portal-title">🏛 Official Government Complaint</div>
+        <div id="officialPortalLinks"></div>
+        <small class="muted">ResolveX opens the official government portal. It does not submit a government complaint automatically.</small>
+      </div>
+
+</body></html>
